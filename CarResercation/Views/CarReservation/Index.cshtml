@@ -1,0 +1,37 @@
+﻿@model List<CarReservation>
+
+@{
+    ViewData["Title"] = "Car Reservations";
+}
+
+<h2>Car Reservations</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Car Model</th>
+            <th>Reservation Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>@reservation.CustomerName</td>
+                <td>@reservation.CarModel</td>
+                <td>@reservation.ReservationDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@reservation.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@reservation.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@reservation.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
